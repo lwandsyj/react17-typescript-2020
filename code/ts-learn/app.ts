@@ -1,16 +1,4 @@
-interface People{
-    name:string,
-    get_name():string;
-    get_name2:()=>string;
-}
+import {saveData} from './test'
+let a =saveData(2) 
 
-let a :People ={
-    name:"zhangsan",
-    get_name():string{
-        return this.name
-    },
-    get_name2:()=>{
-        return this.name
-        
-    }
-}
+console.log(a);

@@ -1,0 +1,1 @@
+1. react 17 最大一个改变就是react 17 以前任何用到jsx 语法的地方，都需要先要引入react ,因为要把jsx 转成React.createElement, 现在不需要引入react 
