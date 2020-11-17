@@ -1,4 +1,13 @@
-import {saveData} from './test'
-let a =saveData(2) 
+interface IPeople{
+    name:string,
+    age:number,
+    sex?:number,
+    [key:string]:any
+}
 
-console.log(a);
+let user:IPeople ={
+    name:"zhangsan",
+    age:12,
+    address:"北京",
+    0:11
+}
