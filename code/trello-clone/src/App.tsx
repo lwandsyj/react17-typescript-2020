@@ -26,3 +26,11 @@ export const Test: React.FC<IProps> = function ({ name }: IProps) {
 function AppTest({ name }: IProps):JSX.Element{
     return <div>{name}</div>
 }
+
+const App1 =():JSX.Element=>{
+        return <div>hello</div> 
+}
+
+const App2:React.FC =():JSX.Element=>{
+    return <div>hello</div> 
+}
