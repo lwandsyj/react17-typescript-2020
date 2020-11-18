@@ -20,6 +20,13 @@ class Category extends Model{
 
 export default (sequelize:Sequelize)=>{
     Category.init({
+        id:{
+            type:DataTypes.INTEGER,
+            allowNull:false,
+            autoIncrement:true,
+            primaryKey:true,
+            comment:'分类名称'
+        },
         name:{
             type:DataTypes.STRING,
             allowNull:false,

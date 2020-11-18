@@ -42,6 +42,10 @@ export default (sequelize:Sequelize)=>{
             name: {
                 type: new DataTypes.STRING(128),
                 allowNull: false,
+                comment:"账号名称",
+                defaultValue:'',
+               
+                
             },
             password: {
                 type: new DataTypes.STRING(128),
