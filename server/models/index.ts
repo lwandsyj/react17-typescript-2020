@@ -1,6 +1,8 @@
 import {Sequelize} from 'sequelize'
 import CreateUser from './user'
 import CreateCategory from './category'
+import CreateRole,{Role,IRoleAttribute} from './role'
+
 let sequelize = new Sequelize({
     dialect: 'mysql', // 数据库类型
     database:'test', // 数据库名称
@@ -26,5 +28,7 @@ export default {
     sequelize,
     Sequelize,
     user:CreateUser(sequelize),
-    category:CreateCategory(sequelize)
+    category:CreateCategory(sequelize),
+    role:CreateRole(sequelize),
+    Role
 }
