@@ -1,5 +1,5 @@
 import { Model } from 'sequelize';
-import Db from '../models'
+import Db from '../src/models'
 
 // 同步数据
 // Db.sequelize.sync({force:true, alter:true}).then(res=>{

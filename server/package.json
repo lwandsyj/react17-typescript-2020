@@ -21,6 +21,8 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
+    "apollo-server-koa": "^2.19.0",
+    "graphql": "^15.4.0",
     "ioredis": "^4.19.2",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",

@@ -3,9 +3,16 @@ import router from './router'
 import path from 'path'
 import koaBody from 'koa-body';
 import StaticCache from 'koa-static-cache'
-
+import {ApolloServer} from 'apollo-server-koa'
+import schema from './graphql'
 const app = new Koa();
 
+const graphqlServer = new ApolloServer({
+    schema,
+    debug:true,
+    tracing:true
+})
+graphqlServer.applyMiddleware({app});
 app.use(StaticCache({
     dir: path.join(__dirname, '../static'),
     prefix: '/static'
