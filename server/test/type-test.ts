@@ -26,21 +26,16 @@ async function test(){
     }
 }
 
-redis.psetex('str-learn-ex',3000,'hello redis ex 30')
-let id= setInterval(function(){
-    redis.pttl('str-learn-ex',(err,res)=>{
-       if(res<=0){
-           clearInterval(id)
-       }
-       console.log(res)
-    })
-},500)
+const key ='hash-learn';
+redis.hset(key,'age',12)
+redis.hset(key,'sex',1)
+redis.hsetnx(key,'sex',0)
 
-redis.set('increment',5);
-redis.decrby('increment',3);
-redis.get('increment',(err,res)=>{
-    console.log('increment',res)
+redis.hgetall(key).then(res=>{
+    console.log(res)
 })
+
+
 
 
 
