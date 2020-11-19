@@ -85,4 +85,18 @@
             
         }
 
+> 只读属性readonly
+
+        interface CategoryAttributes{
+            id?:number;
+            name:string;
+            parentId:number;
+            code:string;
+            order:number;
+            readonly createdAt?:Date; //只读的
+            readonly updatedAt:Date; // 只读的
+        }
+
+
+
 
