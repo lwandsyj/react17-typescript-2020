@@ -11,10 +11,15 @@ export async function getUserAll() {
 /**
  * 根据Id 获取用户数据
  */
-export async function getUserInfo(id:number){
+export async function getUserInfo(params:{id:number,name:string}){
+    const where:{id?:number,name?:string}={};
+    if(params.id){
+        where.id=params.id;
+    }
+    if(params.name){
+        where.name=params.name
+    }
     return await DB.user.findOne({
-        where:{
-            id
-        }
+        where
     })
 }

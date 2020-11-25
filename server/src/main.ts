@@ -7,10 +7,24 @@ import {ApolloServer} from 'apollo-server-koa'
 import schema from './graphql'
 const app = new Koa();
 
+app.use(async (ctx,next)=>{
+    console.log('start')
+    await next();
+    console.log('ctx',ctx.body)
+    // ctx.body={
+    //     code:10000,
+    //     msg:'',
+    //     data:ctx.body
+    // }
+})
+
 const graphqlServer = new ApolloServer({
     schema,
     debug:true,
-    tracing:true
+    tracing:true,
+    context:(context)=>{
+        return context
+    }
 })
 graphqlServer.applyMiddleware({app});
 app.use(StaticCache({
