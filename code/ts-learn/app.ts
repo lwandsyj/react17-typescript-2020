@@ -4,5 +4,5 @@ interface IUser{
     sex:number
 }
 
-let user: IUser = { name: "name",age:100 };
+let user: IUser = { name: "name",age:100 } as IUser;
 console.log(user.sex)
