@@ -35,6 +35,66 @@
                 }
             }
 
+> combineReducers({key:func}): 接受一个对象形式，value 为reducer 函数
+
+            export default function combineReducers(reducers) {
+                const reducerKeys = Object.keys(reducers)
+                const finalReducers = {}
+                for (let i = 0; i < reducerKeys.length; i++) {
+                    const key = reducerKeys[i]
+
+                    if (process.env.NODE_ENV !== 'production') {
+                        if (typeof reducers[key] === 'undefined') {
+                            warning(`No reducer provided for key "${key}"`)
+                        }
+                    }
+
+                    // 
+                    if (typeof reducers[key] === 'function') {
+                        finalReducers[key] = reducers[key]
+                    }
+                }
+
+                // 返回一个函数
+                return function combination(state = {}, action) {
+                    ... 
+                }
+            }
+
+> 执行reducer 返回state
+
+            const nextState = {}
+                for (let i = 0; i < finalReducerKeys.length; i++) {
+                    const key = finalReducerKeys[i]
+
+                    const reducer = finalReducers[key]
+
+                    const previousStateForKey = state[key]
+
+                    const nextStateForKey = reducer(previousStateForKey, action)
+
+                    if (typeof nextStateForKey === 'undefined') {
+                        const errorMessage = getUndefinedStateErrorMessage(key, action)
+                        throw new Error(errorMessage)
+                    }
+                    // key 为combineReducer 设置的key
+                    nextState[key] = nextStateForKey
+
+                    hasChanged = hasChanged || nextStateForKey !== previousStateForKey
+                }
+                hasChanged =
+                hasChanged || finalReducerKeys.length !== Object.keys(state).length
+                
+                return hasChanged ? nextState : state
+            }
+
+            {
+                // key 为combineReducer 设置的key 
+                key:{
+
+                }
+            }
+
 + store: 
 
    + getState() 
@@ -45,16 +105,3 @@
 
    + replaceReducer()
 
-3. react-redux:
-
-+ Provider: 
-
-        import { Provider } from 'react-redux';
-
-        const Root = ({ store }) => (
-            <Provider store={store}>
-                <Router>
-                    <Route path="/" component={App} />
-                </Router>
-            </Provider>
-        );
